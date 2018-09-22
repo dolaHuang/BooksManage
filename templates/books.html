@@ -1,0 +1,88 @@
+{% extends 'show_base.html' %}
+
+{% block main %}
+    <div class="col-lg-1 left-bar">
+        <div class="left-link-top">
+            请选择要查看的分类
+        </div>
+        <ul>
+            <li>
+                <a href="/publish/" class="link" title="查看出版社列表">
+                <img src="/static/pic/publish_l.png" class="link_title mid">
+            </a>
+            </li>
+            <li>
+                <a href="/author/" class="link" title="查看作者列表">
+                <img src="/static/pic/author_l.png" class="link_title">
+            </a>
+            </li>
+            <li>
+                <a href="/book/" class="link" title="查看图书列表">
+                    <img src="/static/pic/book_l.png" class="link_title">
+                </a>
+            </li>
+        </ul>
+
+
+    </div>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-10 col-md-offset-1">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>书籍名称</th>
+                    <th>价格</th>
+                    <th>出版日期</th>
+                    <th>出版社</th>
+                    <th>作者</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for foo in current_page %}
+                        <tr>
+                            <td>{{ foo.title }}</td>
+                            <td>{{ foo.price }}</td>
+{#                        日期要加过滤，格式化#}
+                            <td>{{ foo.pub_date|date:'Y-m-d' }}</td>
+                            <td>
+                                <a href="/publish/{{ foo.publish.pk }}/show" title="查看该出版社的所有图书">
+                                    {{ foo.publish.name }}
+                                </a>
+                            </td>
+                            <td>
+                                {% for author in foo.author.all %}
+{#                                    如果是列表的最后一个（forloop.last），就不加逗号#}
+                                    {% if forloop.last %}
+                                        <span>
+                                            <a href="/author/{{ author.pk }}/show" title="查看该作者的所有图书">
+                                                {{ author.name}}
+                                            </a>
+                                        </span>
+                                    {% else %}
+                                        <span>
+                                            <a href="/author/{{ author.pk }}/show" title="查看该作者的所有图书">
+                                                {{ author.name}}{{ ',' }}
+                                            </a>
+                                        </span>
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>
+                                <a class="btn delete-btn" id="{{ foo.pk }}">
+                                    <button type="button" class="btn btn-danger delete-button" data-toggle="modal" data-target="#myModal">删除</button>
+                                </a>
+                                <a href="/{{ english_title }}/{{ foo.pk }}/change" class="btn btn-info">编辑</a>
+                            </td>
+                        </tr>
+                    {% endfor book_list%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

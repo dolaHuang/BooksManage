@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>逐梦图书管理</title>
+{% endblock %}
+
+{% block topbar %}
+    <ul class="nav nav-pills add-link">
+        <li role="presentation"><a href="/addauthor/">添加作者</a></li>
+        <li class="sep">|</li>
+        <li role="presentation"><a href="/addpublish/">添加出版社</a></li>
+        <li class="sep">|</li>
+        <li role="presentation"><a href="/addbook/">添加图书</a></li>
+    </ul>
+{% endblock %}
+
+
+{% block main %}
+    <div class="container main">
+        <div class="row">
+            <div class="col-md-8 col-lg-offset-4 title">
+                <img src="/static/pic/title.png" alt="">
+            </div>
+        </div>
+        <div class="row">
+
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <a href="/book/" class="link" title="查看图书列表">
+                    <img src="/static/pic/1.jpg" alt="..." class="img-rounded center-block">
+                    <img src="/static/pic/book.png" class="link_title">
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/publish/" class="link" title="查看出版社列表">
+                    <img src="/static/pic/1.jpg" alt="..." class="img-rounded center-block">
+                    <img src="/static/pic/publish.png" class="link_title mid">
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/author/" class="link" title="查看作者列表">
+                    <img src="/static/pic/1.jpg" alt="..." class="img-rounded center-block">
+                    <img src="/static/pic/author.png" class="link_title">
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

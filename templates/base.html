@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="/static/pic/index.png">
+    {% block title %}
+
+    {% endblock %}
+    <link rel="stylesheet" href="/static/dist/css/bootstrap.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        #top-pic{
+            width: 20px;
+            height: 20px;
+        }
+        .navbar{
+            border-radius: 0;
+            z-index: 999;
+        }
+        .add-link{
+            float: left;
+        }
+        {#尾部#}
+        div.footer{
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            margin-left: -135px;
+            margin-top: 0;
+            text-align: center;
+            font-weight: 700;
+            font-size: 16px;
+            color: #000000;
+            z-index: 1001;
+        }
+        {#背景图片#}
+        .background{
+            position: fixed;
+            top: 0;
+            z-index: 0;
+        }
+        .img-rounded{
+            width: 200px;
+            height: 200px;
+            box-shadow: 5px 5px 4px #1b6d85;
+        }
+
+        .main{
+            margin-top: 50px;
+        }
+        a.link{
+            position: relative;
+            box-shadow: 10px 10px 5px #888888;
+        }
+        .link_title{
+            position: absolute;
+            top:-150px;
+            left: 130px;
+        }
+        .mid{
+            left: 113px;
+        }
+        .title{
+            margin-bottom: 50px;
+        }
+        .sep{
+            font-size: 25px;
+        }
+        .theme{
+            float: left;
+            margin-top: 12px;
+            color: white;
+        }
+        {#主页面的三大查询标题#}
+        a.link:hover{
+            bottom:-5px;
+            box-shadow: none;
+        }
+
+        {#查询页面#}
+        .nav-pills li{
+            float: right;
+            margin-top: 5px;
+        }
+        td a{
+            display: block;
+            margin-left: 15px;
+        }
+        .table{
+            background-color: #d2b615;
+        }
+        table.table thead tr th{
+            text-align: center;
+            font-size: 20px;
+        }
+        table.table tbody tr td{
+            text-align: center;
+            line-height: 35px;
+        }
+        {#查询页面左侧小链接#}
+        .left-bar li{
+            margin-bottom: 50px;
+            margin-top: 20px;
+        }
+        div.left-bar .img-rounded {
+            width: 100px;
+            height: 100px;
+            box-shadow: 2px 2px 1px #1b6d85;
+        }
+        .left-bar li img.link_title{
+            left: 25px;
+            top: 0;
+        }
+        .left-link-top{
+            margin-top: 2px;
+            background-color: #d2b615;
+            width: 150px;
+            text-align: center;
+            height: 46px;
+            font-size: 16px;
+            line-height: 46px;
+            border-radius: 2px;
+        }
+        {#分页器#}
+        .pagination{
+            position: fixed;
+            bottom: 60px;
+            left: 50%;
+            margin-left: -305px;
+        }
+        .pagination li a{
+            width: 42px;
+        }
+        .pagination li a.ends{
+            width: 80px;
+        }
+        {#添加页面#}
+        .error{
+            color: red;
+        }
+        .add-btn{
+            margin: 20px auto 0;
+            display: block;
+        }
+        .input-form{
+            margin-top: 30px;
+            overflow: hidden;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #d2b615;
+        }
+        {#删除模态框#}
+        a.btn.delete-btn{
+            margin: 0;
+            padding: 0;
+        }
+        button.btn-primary,button.btn-default{
+            float: right;
+            margin-left: 15px;
+        }
+        {#查看点击数据#}
+        td a{
+            display: inline;
+        }
+        {#注册成功提示#}
+        #reg-suc{
+            position: fixed;
+            display: none;
+            height: 30px;
+            line-height: 30px;
+            font-size: 16px;
+            background-color: #4cae4c;
+            color: white;
+            top: 130px;
+            left: 640px;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+{#通天导航栏#}
+    <nav class="navbar navbar-default navbar-inverse ">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">
+                    <img alt="Brand" src="/static/pic/index.png" id="top-pic">
+                </a>
+            </div>
+{#            导航栏添加链接#}
+            {% block topbar%}
+
+            {% endblock %}
+            <ul class="nav nav-pills">
+                <li role="presentation" class="login-status"><a href="#" data-toggle="modal" data-target="#login" class="login-btn login">登陆</a></li>
+                <li role="presentation" class="hidden login-out"><a href="/logout/">注销</a></li>
+                <li class="sep">|</li>
+                <li role="presentation" class="reg"><a href="#" data-toggle="modal" data-target="#register" class="login-btn register">注册</a></li>
+                <li role="presentation" class="hidden login-user"><a></a></li>
+                {% block backIdenx %}
+                {% endblock %}
+            </ul>
+        </div>
+    </nav>
+{#主体#}
+    <div class="background">
+        <img src="/static/pic/backgroundimg.jpg" alt="">
+    </div>
+        {% block main %}
+
+        {% endblock %}
+        
+        {% block paginator %}
+         
+        {% endblock %}
+{#删除模态框#}
+    {% include 'delete_model.html' %}
+{#登陆和注册模态框#}
+    {% include 'login_reg_model.html' %}
+{#尾部#}
+    <div class="footer">Copyright © 2018 todolist by 游小刀</div>
+
+</body>
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="/static/jquery-3.2.1.min.js"></script>
+    <script src="/static/dist/js/bootstrap.js"></script>
+    <script src="/static/session.js"></script>
+<script>
+    $(function () {
+        {#判断是不是登陆状态#}
+        login_user=$.session.get('user');
+        if(login_user){
+            $('.login-username a').text(login_user);
+            $('#login').removeClass('in').hide();
+            $('.login-user a').text('欢迎'+login_user);
+            $('nav .login').addClass('hidden');
+            $('nav .register').addClass('hidden');
+            $('nav .login-out').removeClass('hidden');
+            $('nav .login-user').removeClass('hidden');
+        }
+        {#分页器居中#}
+        width = $(".pagination").width();
+        $(".pagination").css("margin-left", -width / 2);
+
+        {#删除获取数据#}
+        $('.delete-button').click(function () {
+            {#当前按钮标签的href#}
+            id = $(this).parent().attr('id');
+            tag = $('#myModal');
+            $(this).parent().parent().append(tag);
+            {#获取该行数据的name字段的值#}
+            foo_name = $(this).parent().parent().siblings().first().text();
+            {#模态框的删除按钮#}
+            btn = $(this).parent().siblings('div').find('a');
+            {#设置btn的href#}
+            btn.attr("href", '/{{ english_title }}/' + id + '/delete');
+            $(this).parent().find($('div.modal-body').text('确定要删除 <' + foo_name + '> 吗？删除后将无法恢复！！！'));
+        });
+
+        // 登陆注册框
+
+        {#点击登陆提交#}
+        $('.model-login-btn').click(function () {
+            var login_username_input = $('#login-username-input').val();
+            var login_pwd_input = $('#login-pwd-input').val();
+            {#获取登陆前的请求页面#}
+            var next_url=window.location.href;
+            url_host=next_url.split('/accounts/')[0];
+            next_theme=next_url.split('=')[1];
+            if(next_theme===undefined){
+                next_theme=''
+            }
+            $.ajax({
+                url: '/login/',
+                type: 'post',
+                data: {"username": login_username_input, "password": login_pwd_input},
+                success: function (data) {
+                    {#先清空上次的错误消息#}
+                    $('#login-username').text('');
+                    $('#login-password').text('');
+                    response = JSON.parse(data);
+                    if(response.user){
+                        {#跳转到拼接的路径#}
+                        window.location.href=url_host+next_theme;
+
+                        $.session.set('user', response.user);
+                        $('#login').removeClass('in').hide();
+                        $('.login-user a').text('欢迎'+response.user);
+                        $('nav .login').addClass('hidden');
+                        $('nav .register').addClass('hidden');
+                        $('nav .login-out').removeClass('hidden');
+                        $('nav .login-user').removeClass('hidden');
+
+                    }else {
+                        $.each(response.msg, function (name, error_info) {
+                            $('#login-' + name).text(error_info[0])
+                        });
+                    }
+                }
+            })
+        });
+        {#点击注册提交#}
+        $('.model-reg-btn').click(function () {
+            var reg_username_input = $('#reg-username-input').val();
+            var reg_pwd_input = $('#reg-pwd-input').val();
+            var reg_pwdr_input = $('#reg-pwdr-input').val();
+            $.ajax({
+                url: '/reg/',
+                type: 'post',
+                data: {"username": reg_username_input, "password": reg_pwd_input, 'password_r': reg_pwdr_input},
+                success: function (data) {
+                    {#先清空上次的错误消息#}
+                    $('#reg-username').text('');
+                    $('#reg-password').text('');
+                    $('#reg-password_r').text('');
+                    response = JSON.parse(data);
+                    if(response.user) {
+                        $("#reg-suc").css("display","block");
+                        setTimeout(function () {
+                            $("#reg-suc").css("display","none")
+                        },3000);
+                        {#刷新当前页面#}
+                        window.location.reload();
+
+                    }else{
+                        $.each(response.msg, function (name, error_info) {
+
+                            $('#reg-' + name).text(error_info[0])
+                        })
+                    }
+                }
+            })
+        });
+        {#跳转到首页登录框#}
+        $('.close').click(function () {
+            $('#login').removeClass('in').hide()
+        });
+        $('#call-off').click(function () {
+            $('#login').removeClass('in').hide()
+
+        });
+        {#注销#}
+        $('.login-out').click(function () {
+
+            $.session.remove('user');
+        });
+        {#点击登陆模态框的点我注册的同时关闭登陆模态框#}
+        $('#to-reg').click(function () {
+            $('#login').removeClass("in").hide()
+        });
+    })
+
+</script>
+</html>

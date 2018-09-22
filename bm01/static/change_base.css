@@ -1,0 +1,119 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#top-pic{
+    width: 20px;
+    height: 20px;
+}
+.navbar{
+    border-radius: 0;
+    z-index: 999;
+}
+.add-link{
+    float: left;
+}
+/*{#尾部#}*/
+div.footer{
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    margin-left: -135px;
+    margin-top: 0;
+    text-align: center;
+    font-weight: 700;
+    font-size: 16px;
+    color: #000000;
+    z-index: 1001;
+}
+/*{#背景图片#}*/
+.background{
+    position: fixed;
+    top: 0;
+    z-index: 0;
+}
+.img-rounded{
+    width: 200px;
+    height: 200px;
+    box-shadow: 5px 5px 4px #1b6d85;
+}
+.main{
+    margin-top: 50px;
+}
+a.link{
+    position: relative;
+    box-shadow: 10px 10px 5px #888888;
+}
+.link_title{
+    position: absolute;
+    top:-150px;
+    left: 130px;
+}
+.mid{
+    left: 113px;
+}
+.title{
+    margin-bottom: 50px;
+}
+.sep{
+    font-size: 25px;
+}
+.theme{
+    float: left;
+    margin-top: 12px;
+    color: white;
+}
+/*{#主页面的三大查询标题#}*/
+a.link:hover{
+    bottom:-5px;
+    box-shadow: none;
+}
+/*{#查询页面#}*/
+.nav-pills li{
+    float: right;
+    margin-top: 5px;
+}
+td a{
+    display: block;
+    margin-left: 15px;
+}
+.table{
+    background-color: #d2b615;
+}
+table.table thead tr th{
+    text-align: center;
+    font-size: 20px;
+}
+table.table tbody tr td{
+    text-align: center;
+    line-height: 35px;
+}
+/*{#分页器#}*/
+.pagination{
+    position: fixed;
+    bottom: 60px;
+    left: 50%;
+    margin-left: -305px;
+}
+.pagination li a{
+    width: 42px;
+}
+.pagination li a.ends{
+    width: 80px;
+}
+/*{#添加页面#}*/
+.error{
+    color: red;
+}
+.add-btn{
+    margin: 20px auto 0;
+    display: block;
+}
+.input-form{
+    margin-top: 30px;
+    overflow: hidden;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #d2b615;
+}
